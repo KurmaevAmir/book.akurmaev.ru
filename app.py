@@ -1,5 +1,6 @@
 from flask import Flask
 from waitress import serve
+from data import db_session
 
 app = Flask(__name__)
 
@@ -10,4 +11,6 @@ def hello_world():
 
 
 if __name__ == '__main__':
-    serve(app, host='0.0.0.0', port=5000)
+    # serve(app, host='0.0.0.0', port=5000)
+    db_session.global_init("db/users_data.db")
+    app.run()
