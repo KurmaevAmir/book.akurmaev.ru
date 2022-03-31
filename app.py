@@ -2,7 +2,9 @@ from flask import Flask
 from waitress import serve
 from data import db_session
 
+
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'Z,kjrjTds_secret_key'
 
 
 @app.route('/')
