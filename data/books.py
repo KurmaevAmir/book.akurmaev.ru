@@ -20,6 +20,8 @@ class Books(SqlAlchemyBase):
     title = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     content = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     image = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    rating = sqlalchemy.Column(sqlalchemy.Float, default=0.0, nullable=True)
+    reviews = sqlalchemy.Column(sqlalchemy.Integer, default=0, nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=datetime.datetime.now)
     status = sqlalchemy.Column(sqlalchemy.String, default=True)
