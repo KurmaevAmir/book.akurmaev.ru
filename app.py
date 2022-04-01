@@ -47,25 +47,5 @@ def index():
                            high_school_list=high_school_list, students_list=students_list)
 
 
-def main():
-    db_session.global_init("db/users_data.db")
-    db_sess = db_session.create_session()
-    book = Books()
-    book.title = "Великий Гэтсби"
-    book.content = "Великий Гэтсби - Ф.С.Фицджеральд"
-    book.image = "/static/img/TheGreatGatsby.jpg"
-    book.rating = 0.5
-    book.reviews = 0
-    book.status = "in"
-    book.user_id = 1
-    book.limitation = "Студентам"
-    db_sess.add(book)
-    db_sess.commit()
-
-
-
 if __name__ == '__main__':
-    # serve(app, host='0.0.0.0', port=5000)
-    db_session.global_init("db/users_data.db")
-    app.run()
-    # main()
+    serve(app, host='0.0.0.0', port=5000)
