@@ -36,6 +36,21 @@ h1, h2, h3, h4, h5, h6 {
     background-size: cover;
 }
 
+.card {
+	margin: 0 auto;	
+}
+
+.card-body {
+	margin-top: 30px;
+	justify-content: space-between;
+	max-height: 380px;
+}
+
+.card_buttons {
+	padding-left: 50%;
+	padding-bottom: 1rem;
+}
+
 .navbar-nav .dropdown-menu {
 	right: 0;
 	left: auto;
