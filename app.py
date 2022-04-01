@@ -5,9 +5,11 @@ from waitress import serve
 from data import db_session
 from data.books import Books
 from data.users import User
+from data.first_book import blueprint
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Z,kjrjTds_secret_key'
+app.register_blueprint(blueprint, url_prefix="/books")
 
 
 @app.route('/')
