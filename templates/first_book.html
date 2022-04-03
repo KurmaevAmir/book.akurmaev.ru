@@ -1,5 +1,7 @@
-{% extends "base.html" %}
 <title>{{ title }}</title>
+
+{% extends "base.html" %}
+
 {% block content %}
 <div class="card mb-3" style="max-width: 800px; background-color: #ddd9cd;">
     <div class="row g-0" style="justify-content: space-between;">
@@ -8,7 +10,7 @@
         </div>
         <div class="col-md-8" style="width: 55%; display: flex; flex-direction: column;">
             <div class="card-body">
-                <h5 class="card-title">{{ book_title }}</h5>
+                <h5 class="card-title">{{ title }}</h5>
                 <p class="card-text">{{ description }}</p>
             </div>
 

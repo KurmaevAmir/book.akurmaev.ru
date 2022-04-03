@@ -19,7 +19,7 @@ def index():
 
     recommendations_list = []
     for book in db_sess.query(Books).filter(Books.rating > 0.9):
-        recommendations_list.append((book.content, book.image))
+        recommendations_list.append((book.content, book.image, book.id))
 
     value_novelties = datetime.date.today() - datetime.timedelta(
         days=30)
@@ -29,7 +29,7 @@ def index():
     for book in db_sess.query(Books).filter(
             (Books.created_date - value_novelties) <= date):
         novelties_list.append((book.content, book.image,
-                               book.created_date))
+                               book.created_date, book.id))
 
     novelties_list.sort(reverse=True, key=lambda x: x[2])
     novelties_list = novelties_list[:5]
@@ -41,28 +41,28 @@ def index():
                                              "Начальная школа") |
                                             (Books.limitation.in_(
                                                 numbers_list[:3]))):
-        primary_school_list.append((book.content, book.image))
+        primary_school_list.append((book.content, book.image, book.id))
 
     secondary_school_list = []
     for book in db_sess.query(Books).filter((Books.limitation ==
                                              "Средняя школа") |
                                             (Books.limitation.in_(
                                                 numbers_list[4:8]))):
-        secondary_school_list.append((book.content, book.image))
+        secondary_school_list.append((book.content, book.image, book.id))
 
     high_school_list = []
     for book in db_sess.query(Books).filter((Books.limitation ==
                                              "Старшая школа") |
                                             (Books.limitation.in_(
                                                 numbers_list[9:10]))):
-        high_school_list.append((book.content, book.image))
+        high_school_list.append((book.content, book.image, book.id))
 
     students_list = []
     for book in db_sess.query(Books).filter((Books.limitation ==
                                              "Студентам") |
                                             (Books.limitation ==
                                              (numbers_list[-1]))):
-        students_list.append((book.content, book.image))
+        students_list.append((book.content, book.image, book.id))
 
     return render_template("index.html",
                            recommendations_list=recommendations_list,
@@ -74,4 +74,5 @@ def index():
 
 
 if __name__ == '__main__':
-    serve(app, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+    # serve(app, host='0.0.0.0', port=5000)
