@@ -1,5 +1,6 @@
-from flast_wtf import FlaskForm
-from wtforms import PasswordField, StringField, TextAreaField, SubmitField, EmailField
+from flask_wtf import FlaskForm
+from wtforms import PasswordField, StringField, TextAreaField, SubmitField, \
+    EmailField, IntegerField
 from wtforms.validators import DataRequired
 
 
@@ -8,5 +9,6 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Пароль', validators=[DataRequired()])
     password_again = PasswordField('Повторите пароль', validators=[DataRequired()])
     name = StringField('Имя пользователя', validators=[DataRequired()])
-    about = TextAreaField("Немного о себе")
+    number = IntegerField('Класс', validators=[DataRequired()])
+    letter = StringField('Литера', validators=[DataRequired()])
     submit = SubmitField('Войти')

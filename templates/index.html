@@ -28,12 +28,12 @@
                           </div>
                           <div class="carousel-inner">
                             <div class="carousel-item active">
-                              <a href="/books/{{ recommendations_list[0][-1] }}"><img src="{{ recommendations_list[0][1] }}" class="d-block w-100"
+                              <a href="/{{ recommendations_list[0][-1] }}"><img src="{{ recommendations_list[0][1] }}" class="d-block w-100"
                                                alt="{{ recommendations_list[0][0] }}"></a>
                             </div>
                             {% for book in recommendations_list[1:] %}
                                 <div class="carousel-item">
-                                    <a href="/books/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
+                                    <a href="/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
                                                      alt="{{ book[0] }}"></a>
                                 </div>
                             {% endfor %}
@@ -68,12 +68,12 @@
                           </div>
                           <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <a href="/books/{{ novelties_list[0][-1] }}"><img src="{{ novelties_list[0][1] }}" class="d-block w-100"
+                                <a href="/{{ novelties_list[0][-1] }}"><img src="{{ novelties_list[0][1] }}" class="d-block w-100"
                                                  alt="{{ novelties_list[0][0] }}"></a>
                             </div>
                             {% for book in novelties_list[1:] %}
                                 <div class="carousel-item">
-                                    <a href="/books/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
+                                    <a href="/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
                                                      alt="{{ book[0] }}"></a>
                                 </div>
                             {% endfor %}
@@ -108,12 +108,12 @@
                           </div>
                           <div class="carousel-inner">
                             <div class="carousel-item active">
-                              <a href="/books/{{ primary_school_list[0][-1] }}"><img src="{{ primary_school_list[0][1] }}" class="d-block w-100"
+                              <a href="/{{ primary_school_list[0][-1] }}"><img src="{{ primary_school_list[0][1] }}" class="d-block w-100"
                                                alt="{{ primary_school_list[0][0] }}"></a>
                             </div>
                             {% for book in primary_school_list[1:] %}
                                 <div class="carousel-item">
-                                    <a href="/books/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
+                                    <a href="/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
                                                      alt="{{ book[0] }}"></a>
                                 </div>
                             {% endfor %}
@@ -150,12 +150,12 @@
                           </div>
                           <div class="carousel-inner">
                             <div class="carousel-item active">
-                              <a href="/books/{{ secondary_school_list[0][-1] }}"><img src="{{ secondary_school_list[0][1] }}" class="d-block w-100"
+                              <a href="/{{ secondary_school_list[0][-1] }}"><img src="{{ secondary_school_list[0][1] }}" class="d-block w-100"
                                                alt="{{ secondary_school_list[0][0] }}"></a>
                             </div>
                             {% for book in secondary_school_list[1:] %}
                                 <div class="carousel-item">
-                                    <a href="/books/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
+                                    <a href="/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
                                                      alt="{{ book[0] }}"></a>
                                 </div>
                             {% endfor %}
@@ -190,12 +190,12 @@
                           </div>
                           <div class="carousel-inner">
                             <div class="carousel-item active">
-                              <a href="/books/{{ high_school_list[0][-1] }}"><img src="{{ high_school_list[0][1] }}" class="d-block w-100"
+                              <a href="/{{ high_school_list[0][-1] }}"><img src="{{ high_school_list[0][1] }}" class="d-block w-100"
                                                alt="{{ high_school_list[0][0] }}"></a>
                             </div>
                             {% for book in high_school_list[1:] %}
                                 <div class="carousel-item">
-                                    <a href="/books/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
+                                    <a href="/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
                                                      alt="{{ book[0] }}"></a>
                                 </div>
                             {% endfor %}
@@ -230,12 +230,12 @@
                           </div>
                           <div class="carousel-inner">
                             <div class="carousel-item active">
-                              <a href="/books/{{ students_list[0][-1] }}"><img src="{{ students_list[0][1] }}" class="d-block w-100"
+                              <a href="/{{ students_list[0][-1] }}"><img src="{{ students_list[0][1] }}" class="d-block w-100"
                                                alt="{{ students_list[0][0] }}"></a>
                             </div>
                             {% for book in students_list[1:] %}
                                 <div class="carousel-item">
-                                    <a href="/books/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
+                                    <a href="/{{ book[-1] }}"><img src="{{ book[1] }}" class="d-block w-100"
                                                      alt="{{ book[0] }}"></a>
                                 </div>
                             {% endfor %}
