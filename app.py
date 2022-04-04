@@ -1,14 +1,31 @@
 import datetime
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from waitress import serve
 from data import db_session
 from data.books import Books
 from data.blueprints import blueprint
+from flask_login import LoginManager, login_required, logout_user
+from data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Z,kjrjTds_secret_key'
+login_manager = LoginManager()
+login_manager.init_app(app)
 app.register_blueprint(blueprint)
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    db_sess = db_session.create_session()
+    return db_sess.query(User).get(user_id)
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect("/")
 
 
 @app.route('/')

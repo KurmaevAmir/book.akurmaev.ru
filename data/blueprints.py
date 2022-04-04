@@ -1,9 +1,11 @@
+import datetime
 from flask import Blueprint, render_template, redirect
 from data import db_session
 from data.books import Books
 from data.register import RegisterForm
-import datetime
 from data.users import User
+from data.login import LoginForm
+from flask_login import login_user
 
 blueprint = Blueprint("first_book", __name__,
                       static_folder="static",
@@ -31,7 +33,7 @@ def register():
             return render_template('register.html', title='Регистрация',
                                    form=form,
                                    message="Пароли не совпадают")
-        if 1 > form.number.data > 11:
+        if 1 > form.number.data or 11 < form.number.data:
             return render_template('register.html', title='Регистрация',
                                    form=form,
                                    message="Неверный номер класса")
@@ -50,7 +52,6 @@ def register():
             email=form.email.data,
             hashed_password=form.password.data,
             created_date=datetime.datetime.now(),
-            rights="User",
             parallel_number_student=form.number.data,
             letter=form.letter.data
         )
@@ -59,3 +60,19 @@ def register():
         db_sess.commit()
         return redirect('/login')
     return render_template('register.html', title='Регистрация', form=form)
+
+
+@blueprint.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        db_session.global_init("db/users_data.db")
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.email == form.email.data).first()
+        if user and user.check_password(form.password.data):
+            login_user(user, remember=form.remember_me.data)
+            return redirect("/profile")
+        return render_template('login.html',
+                               message="Неправильный логин или пароль",
+                               form=form)
+    return render_template('login.html', title='Авторизация', form=form)
