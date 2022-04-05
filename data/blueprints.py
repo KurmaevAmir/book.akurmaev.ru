@@ -30,21 +30,21 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
-            return render_template('register.html', title='Регистрация',
+            return render_template('register.html',
                                    form=form,
                                    message="Пароли не совпадают")
         if 1 > form.number.data or 11 < form.number.data:
-            return render_template('register.html', title='Регистрация',
+            return render_template('register.html',
                                    form=form,
                                    message="Неверный номер класса")
         if len(form.letter.data) > 1 or form.letter.data not in ['А', 'Б', 'В', 'Г']:
-            return render_template('register.html', title='Регистрация',
+            return render_template('register.html',
                                    form=form,
                                    message="Неверная литера")
         db_session.global_init("db/users_data.db")
         db_sess = db_session.create_session()
         if db_sess.query(User).filter(User.email == form.email.data).first():
-            return render_template('register.html', title='Регистрация',
+            return render_template('register.html',
                                    form=form,
                                    message="Такой пользователь уже есть")
         user = User(
@@ -59,7 +59,7 @@ def register():
         db_sess.add(user)
         db_sess.commit()
         return redirect('/login')
-    return render_template('register.html', title='Регистрация', form=form)
+    return render_template('register.html', form=form)
 
 
 @blueprint.route('/login', methods=['GET', 'POST'])
@@ -75,4 +75,11 @@ def login():
         return render_template('login.html',
                                message="Неправильный логин или пароль",
                                form=form)
-    return render_template('login.html', title='Авторизация', form=form)
+    return render_template('login.html', form=form)
+
+
+@blueprint.route('/profile')
+def profile():
+    db_session.global_init("db/users_data.db")
+    db_sess = db_session.create_session()
+    return render_template("profile.html")
