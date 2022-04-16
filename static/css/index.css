@@ -8,16 +8,12 @@
     padding: 10px;
 }
 
-table{
+/*table{
     border-collapse: separate;
     border-spacing: 50px 11px;
-}
+}*/
 
-.introduction_table {
-    margin-top: auto;
-}
-
-td {
-    margin-top: auto;
-    margin-bottom: auto;
+table.introduction_table {
+    margin-top: 70px;
+    margin-bottom: 145;
 }

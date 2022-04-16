@@ -1,0 +1,10 @@
+div.search {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #DDD9CD;
+	border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 50px;
+    max-width: 800px;
+}
