@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect
 from data import db_session
 from data.users import User
 from data.login import LoginForm
-from flask_login import login_user
+from flask_login import login_user, login_required, logout_user
 
 blueprint_login = Blueprint("first_book", __name__,
                       static_folder="static",
@@ -23,3 +23,10 @@ def login():
                                message="Неправильный логин или пароль",
                                form=form)
     return render_template('login.html', form=form)
+
+
+@blueprint_login.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect("/")

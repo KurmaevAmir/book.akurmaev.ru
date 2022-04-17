@@ -8,8 +8,8 @@
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                 <img class="rounded-circle mt-5" style="border-radius: 10%!important;" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                <span class="font-weight-bold">Edogaru</span>
-                <span class="text-black-50">edogaru@mail.com.my</span>
+                <span class="font-weight-bold">{{ current_user.name }}</span>
+                <span class="text-black-50">{{ current_user.email }}</span>
                 <input name="file" type="file" name="file" id="input__file" class="input input__file" multiple>
                 <label for="input__file" class="input__file-button" style="margin-top: 20px">
                     <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/static/img/down-arrow.png" alt="Выбрать файл" width="25"></span>

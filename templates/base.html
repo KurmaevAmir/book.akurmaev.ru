@@ -37,8 +37,12 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i
                                 class="far fa-user"></i></a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if current_user.is_authenticated %}
+                            <li><a class="dropdown-item" href="/logout">{{ current_user.name }}</a></li>
+                            {% else %}
                             <li><a class="dropdown-item" href="/register">Регистрация</a></li>
                             <li><a class="dropdown-item" href="/login">Авторизация</a></li>
+                            {% endif %}
                         </ul>
                     </li>
                     <li class="nav-item">
