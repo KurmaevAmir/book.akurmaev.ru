@@ -1,7 +1,6 @@
 import datetime
 
 from flask import Flask, render_template, request
-from waitress import serve
 from werkzeug.utils import redirect
 
 from data import db_session
@@ -29,7 +28,6 @@ app.register_blueprint(blueprint_login, name="login")
 def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(User).get(user_id)
-
 
 
 @app.route('/', methods=["POST", "GET"])
