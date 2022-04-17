@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+{% extends "base.html" %}
+    
+{% block content %}
+    <div class="search">
+        {% if status%}
+            <h1>По запросу {{ keys }} найдено:</h1>
+            <table align="center" class="table_search">
+                {% for i in range(0, len_output, 3) %}
+                    <tr>
+                        {% for j in range(3) %}
+                            {% if (j + i) <= (len_output - 1) %}
+                                <th>
+                                    <a href="../book/{{ output_list[j + i][0] }}">
+                                        <img src="{{ output_list[j + i][2] }}" 
+                                        alt="{{ output_list[j + i][1] }}">
+                                    </a>
+                                </th>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h1>По введенному запросу ничего не найдено</h1>
+        {% endif %}
+    </div>
+{% endblock %}
+</body>
+</html>
