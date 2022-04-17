@@ -23,10 +23,13 @@ def searching(keys):
         ):
             output_list.append((book.id, book.title, book.image))
         if not bool(output_list):
-            return render_template("search.html", title=title, status=False)
+            return render_template("search.html", title=title,
+                                   status=False)
         len_output = len(output_list)
-        return render_template("search.html", title=title, status=True,
-                               keys=title, output_list=output_list,
+        return render_template("search.html", title=title,
+                               status=True,
+                               keys=title,
+                               output_list=output_list,
                                len_output=len_output)
     elif request.method == "POST":
         text = request.form['search'].replace(' ', '%')
