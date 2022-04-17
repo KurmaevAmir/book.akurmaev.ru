@@ -1,0 +1,14 @@
+.card {
+	margin: 0 auto;
+}
+
+.card-body {
+	margin-top: 30px;
+	justify-content: space-between;
+	max-height: 380px;
+}
+
+.card_buttons {
+	padding-left: 40%;
+	padding-bottom: 1rem;
+}

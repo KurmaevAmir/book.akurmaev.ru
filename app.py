@@ -1,10 +1,12 @@
 import datetime
 
 from flask import Flask, render_template, redirect
-from waitress import serve
 from data import db_session
 from data.books import Books
-from data.blueprints import blueprint
+from data.blueprint_book import blueprint_book
+from data.blueprint_login import blueprint_login
+from data.blueprint_profile import blueprint_profile
+from data.blueprint_register import blueprint_register
 from flask_login import LoginManager, login_required, logout_user
 from data.users import User
 
@@ -12,7 +14,10 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Z,kjrjTds_secret_key'
 login_manager = LoginManager()
 login_manager.init_app(app)
-app.register_blueprint(blueprint)
+app.register_blueprint(blueprint_profile, name="profile")
+app.register_blueprint(blueprint_register, name="register")
+app.register_blueprint(blueprint_book, name="book")
+app.register_blueprint(blueprint_login, name="login")
 
 
 @login_manager.user_loader
