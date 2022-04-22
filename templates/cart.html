@@ -1,0 +1,23 @@
+    <link rel="stylesheet" type="text/css" href="static/css/index.css" />
+{% extends "base.html" %}
+
+{% block content %}
+ <div class="reg_container" style="margin: 0 30%; padding: 1rem; background-color: #ddd9cd; border-radius: 0.25rem;">
+<table class="table">
+ <tbody>
+
+ {% for i in array %}
+
+ <tr>
+  <td style="max-width: 210px"><img src={{ i[1] }} style="max-width: 200px" alt=""></td>
+  <td><h1 style="text-align: center; margin-right: 50px">{{ i[0] }}</h1></td>
+ </tr>
+
+ {% endfor %}
+
+ </tbody>
+</table>
+  <a href="../" class="btn btn-secondary">Назад </a>
+  <a href="#" class="btn btn-primary">Бронь</a>
+ </div>
+{% endblock %}

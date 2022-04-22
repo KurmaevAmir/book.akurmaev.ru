@@ -10,6 +10,7 @@ from data.search import search
 from data.blueprint_login import blueprint_login
 from data.blueprint_profile import blueprint_profile
 from data.blueprint_register import blueprint_register
+from data.blueprint_cart import blueprint_cart
 from flask_login import LoginManager, login_required, logout_user
 from data.users import User
 
@@ -22,6 +23,7 @@ login_manager.init_app(app)
 app.register_blueprint(blueprint_profile, name="profile")
 app.register_blueprint(blueprint_register, name="register")
 app.register_blueprint(blueprint_login, name="login")
+app.register_blueprint(blueprint_cart, name="cart")
 
 
 @login_manager.user_loader
