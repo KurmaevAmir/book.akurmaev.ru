@@ -27,7 +27,8 @@ def register():
                                    message="Неверная литера")
         db_session.global_init("db/users_data.db")
         db_sess = db_session.create_session()
-        if db_sess.query(User).filter(User.email == form.email.data).first():
+        if db_sess.query(User).filter((User.registration_code == form.email_confirmation),
+                                      (User.email == form.email.data)).first():
             return render_template('register.html',
                                    form=form,
                                    message="Такой пользователь уже есть")
