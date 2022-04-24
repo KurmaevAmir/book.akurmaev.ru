@@ -30,5 +30,6 @@ def login():
 @blueprint_login.route('/logout')
 @login_required
 def logout():
+    session["id_user"] = 0
     logout_user()
     return redirect("/")

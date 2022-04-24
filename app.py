@@ -76,21 +76,21 @@ def index():
         for book in db_sess.query(Books).filter((Books.limitation ==
                                                  "Средняя школа") |
                                                 (Books.limitation.in_(
-                                                    numbers_list[4:8]))):
+                                                    numbers_list[4:8])))[:3]:
             secondary_school_list.append((book.content, book.image, f'book/{book.id}'))
 
         high_school_list = []
         for book in db_sess.query(Books).filter((Books.limitation ==
                                                  "Старшая школа") |
                                                 (Books.limitation.in_(
-                                                    numbers_list[9:10]))):
+                                                    numbers_list[9:10])))[:3]:
             high_school_list.append((book.content, book.image, f'book/{book.id}'))
 
         students_list = []
         for book in db_sess.query(Books).filter((Books.limitation ==
                                                  "Студентам") |
                                                 (Books.limitation ==
-                                                 (numbers_list[-1]))):
+                                                 (numbers_list[-1])))[:3]:
             students_list.append((book.content, book.image, f'book/{book.id}'))
 
         return render_template("index.html",

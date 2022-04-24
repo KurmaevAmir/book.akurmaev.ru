@@ -42,7 +42,5 @@ def register():
         user.set_password(form.password.data)
         db_sess.add(user)
         db_sess.commit()
-        id_user = db_sess.query(User).filter(User.email == form.email.data).first()
-        session["id_user"] = id_user
         return redirect('/login')
     return render_template('register.html', form=form)
