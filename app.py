@@ -1,6 +1,6 @@
 import datetime
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from werkzeug.utils import redirect
 
 from data import db_session
@@ -15,6 +15,10 @@ from data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Z,kjrjTds_secret_key'
+app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
+    days=365
+)
+
 app.register_blueprint(books, url_prefix="/book")
 app.register_blueprint(search, url_prefix="/search")
 login_manager = LoginManager()
@@ -33,6 +37,7 @@ def load_user(user_id):
 @app.route('/', methods=["POST", "GET"])
 @app.route('/index', methods=["POST", "GET"])
 def index():
+    session.get("id_user", 0)
     if request.method == "GET":
         db_session.global_init("db/users_data.db")
         db_sess = db_session.create_session()
