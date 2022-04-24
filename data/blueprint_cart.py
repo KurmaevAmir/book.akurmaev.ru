@@ -19,8 +19,8 @@ def index():
     if ", " in user.shopping_cart:
         for i in user.shopping_cart.split(", "):
             book = db_sess.query(Books).filter(Books.title == i).first()
-            array.append([book.title, book.image])
+            array.append([book.title, book.image, book.id])
     elif user.shopping_cart:
         book = db_sess.query(Books).filter(Books.title == user.shopping_cart).first()
-        array.append([book.title, book.image])
+        array.append([book.title, book.image, book.id])
     return render_template("cart.html", array=array)
