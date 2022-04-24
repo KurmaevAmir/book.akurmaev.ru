@@ -3,12 +3,12 @@ from flask import Blueprint, render_template, jsonify, request
 from data import db_session
 from data.books import Books
 
-books = Blueprint("first_book", __name__,
-                  static_folder="static",
-                  template_folder="templates")
+blueprint_first_book = Blueprint("first_book", __name__,
+                                 static_folder="static",
+                                 template_folder="templates")
 
 
-@books.route('/<int:id>', methods=['POST', 'GET'])
+@blueprint_first_book.route('/<int:id>', methods=['POST', 'GET'])
 def index(id):
     db_session.global_init("db/users_data.db")
     db_sess = db_session.create_session()

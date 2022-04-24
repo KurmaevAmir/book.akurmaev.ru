@@ -14,10 +14,15 @@ def index(id):
     db_session.global_init("db/users_data.db")
     db_sess = db_session.create_session()
     book = db_sess.query(Books).filter(Books.id == id).first()
-    if current_user.shopping_cart:
-        current_user.shopping_cart += f", {book.title}"
+    if book.status == 'in':
+        book.status = 'none'
+        if current_user.shopping_cart:
+            current_user.shopping_cart += f", {book.title}"
+        else:
+            current_user.shopping_cart += book.title
+
+        db_sess.merge(current_user)
+        db_sess.commit()
+        return redirect("../")
     else:
-        current_user.shopping_cart += book.title
-    db_sess.merge(current_user)
-    db_sess.commit()
-    return redirect("../")
+        return 'Книги нет в наличии'
