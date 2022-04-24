@@ -1,11 +1,12 @@
 import datetime
 import sqlalchemy
+from flask_login import UserMixin
 from sqlalchemy import orm
 
 from data.db_session import SqlAlchemyBase
 
 
-class Books(SqlAlchemyBase):
+class Books(SqlAlchemyBase, UserMixin):
     __tablename__ = 'books'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,

@@ -4,19 +4,22 @@ from flask import Flask, render_template, request
 from werkzeug.utils import redirect
 
 from data import db_session
+from data.blueprint_add_book import add_book
 from data.books import Books
 from data.first_book import books
 from data.search import search
 from data.blueprint_login import blueprint_login
 from data.blueprint_profile import blueprint_profile
 from data.blueprint_register import blueprint_register
-from flask_login import LoginManager, login_required, logout_user
+from flask_login import LoginManager
 from data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Z,kjrjTds_secret_key'
+
 app.register_blueprint(books, url_prefix="/book")
 app.register_blueprint(search, url_prefix="/search")
+app.register_blueprint(add_book, url_prefix="/add_book")
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.register_blueprint(blueprint_profile, name="profile")
@@ -85,6 +88,7 @@ def index():
             students_list.append((book.content, book.image, f'book/{book.id}'))
 
         return render_template("index.html",
+                               title="book.akurmaev.ru",
                                recommendations_list=recommendations_list,
                                novelties_list=novelties_list,
                                primary_school_list=primary_school_list,

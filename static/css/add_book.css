@@ -1,0 +1,24 @@
+h1 {
+	color: white;
+	margin-right: auto;
+	margin-left: auto;
+	text-shadow: 1px 1px 1px black;
+}
+
+p {
+	color: white;
+}
+
+ul {
+	color: white;
+}
+
+form.add_book {
+	margin-left: auto;
+	margin-right: auto;
+	width: 450px;
+	background-color: #212529;
+	border: 1px solid white;
+	border-radius: 5 px;
+	padding: 10px;
+}
