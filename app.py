@@ -6,6 +6,7 @@ from werkzeug.utils import redirect
 from data import db_session
 from data.blueprint_add_book import add_book
 from data.books import Books
+from data.data_to_save import UPLOAD_FOLDER
 from data.first_book import books
 from data.search import search
 from data.blueprint_login import blueprint_login
@@ -16,6 +17,7 @@ from data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Z,kjrjTds_secret_key'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 app.register_blueprint(books, url_prefix="/book")
 app.register_blueprint(search, url_prefix="/search")

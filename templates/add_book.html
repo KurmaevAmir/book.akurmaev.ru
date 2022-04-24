@@ -2,7 +2,8 @@
 
 {% block content %}
     <h1>Добавление книги</h1>
-    <form class="add_book" action="" method="post">
+    <form class="add_book" action="" method="post"
+    enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <p>
             {{ form.title.label }}<br>
