@@ -28,7 +28,8 @@ class User(SqlAlchemyBase, UserMixin):
                                         nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=datetime.date.today)
-    shopping_cart = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    shopping_cart = sqlalchemy.Column(sqlalchemy.String, nullable=True,
+                                      default="")
     books = orm.relation("Books", back_populates='user')
 
     def set_password(self, password):
