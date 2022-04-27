@@ -49,7 +49,7 @@ def email_confirmation():
             return redirect("/login")
         return render_template("email_confirmation.html",
                                form=form,
-                               message="Неправильно указанный "
+                               message="Неправильно указан "
                                        "код подтверждения")
     return render_template("email_confirmation.html",
                            title="Подтверждение почты",
