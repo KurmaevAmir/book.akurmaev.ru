@@ -48,9 +48,9 @@ def generationFilename(filename_used):
 def adding():
     db_session.global_init("db/users_data.db")
     db_sess = db_session.create_session()
-    user = db_sess.query(User).filter(User.id ==
-                                      session["id_user"]).first()
     try:
+        user = db_sess.query(User).filter(User.id ==
+                                          session["id_user"]).first()
         if user.rights == "Admin":
             form = BookForm()
             if form.validate_on_submit():
@@ -84,5 +84,6 @@ def adding():
             return render_template("add_book.html",
                                    title="Добавление книги",
                                    form=form)
+        abort(404)
     except:
         abort(404)
