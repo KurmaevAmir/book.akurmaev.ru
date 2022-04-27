@@ -7,9 +7,8 @@ from data import db_session
 from data.SendEmail.blueprint_email_confirmation import confirmation
 from data.blueprint_add_book import add_book
 from data.books import Books
-from data.blueprint_first_book import blueprint_first_book
 from data.data_to_save import UPLOAD_FOLDER
-from data.first_book import books
+from data.blueprint_book import blueprint_book
 from data.search import search
 from data.blueprint_login import blueprint_login
 from data.blueprint_profile import blueprint_profile
@@ -22,13 +21,12 @@ from data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Z,kjrjTds_secret_key'
-app.register_blueprint(blueprint_first_book, url_prefix="/book")
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
     days=365
 )
 
-app.register_blueprint(books, url_prefix="/book")
+app.register_blueprint(blueprint_book, url_prefix="/book")
 app.register_blueprint(search, url_prefix="/search")
 app.register_blueprint(add_book, url_prefix="/add_book")
 app.register_blueprint(confirmation,
