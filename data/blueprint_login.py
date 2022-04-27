@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, render_template, redirect, session
 from data import db_session
 from data.users import User
 from data.login import LoginForm
@@ -18,6 +18,8 @@ def login():
         user = db_sess.query(User).filter(User.email == form.email.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
+            id_user = user.id
+            session["id_user"] = id_user
             return redirect("/profile")
         return render_template('login.html',
                                message="Неправильный логин или пароль",
@@ -28,5 +30,6 @@ def login():
 @blueprint_login.route('/logout')
 @login_required
 def logout():
+    session["id_user"] = 0
     logout_user()
     return redirect("/")
