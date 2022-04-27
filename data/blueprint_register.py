@@ -1,5 +1,5 @@
 import datetime
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, render_template, redirect, session
 from data import db_session
 from data.register import RegisterForm
 from data.users import User
@@ -27,21 +27,24 @@ def register():
                                    message="Неверная литера")
         db_session.global_init("db/users_data.db")
         db_sess = db_session.create_session()
-        if db_sess.query(User).filter((User.registration_code == form.email_confirmation),
-                                      (User.email == form.email.data)).first():
+        if db_sess.query(User).filter(User.email == form.email.data).first():
             return render_template('register.html',
                                    form=form,
                                    message="Такой пользователь уже есть")
-        user = User(
-            name=form.name.data,
-            email=form.email.data,
-            hashed_password=form.password.data,
-            created_date=datetime.datetime.now(),
-            parallel_number_student=form.number.data,
-            letter=form.letter.data
-        )
-        user.set_password(form.password.data)
-        db_sess.add(user)
-        db_sess.commit()
-        return redirect('/login')
+        session.get('login_data', 0)
+        session["login_data"] = [form.name.data, form.email.data,
+                                 form.password.data, form.number.data,
+                                 form.letter.data]
+        # user = User(
+        #     name=form.name.data,
+        #     email=form.email.data,
+        #     hashed_password=form.password.data,
+        #     created_date=datetime.datetime.now(),
+        #     parallel_number_student=form.number.data,
+        #     letter=form.letter.data
+        # )
+        # user.set_password(form.password.data)
+        # db_sess.add(user)
+        # db_sess.commit()
+        return redirect('/email_confirmation')
     return render_template('register.html', form=form)
