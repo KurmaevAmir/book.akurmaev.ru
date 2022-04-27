@@ -2,13 +2,12 @@ from flask import Blueprint, render_template, request, redirect
 from flask_login import login_required, logout_user, current_user
 from data import db_session
 from data.users import User
-from werkzeug.utils import secure_filename
+from data.data_to_save import ALLOWED_EXTENSIONS, UPLOAD_FOLDER_AVATAR
 import os
 
 blueprint_profile = Blueprint("first_book", __name__,
                       static_folder="static",
                       template_folder="templates")
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 
 def allowed_file(filename):
@@ -30,9 +29,12 @@ def profile():
         if 'file' in request.files:
             f = request.files['file']
 
-            if f and allowed_file(f.filename):
-                filename = secure_filename(f.filename)
-                f.save(os.path.join('static/avatars/', filename))
+            if allowed_file(f.filename):
+                extension = f.filename.split(".")[-1]
+                filename = f'{user.id}.{extension}'
+                f.save(os.path.join(UPLOAD_FOLDER_AVATAR, filename))
+                user.avatar = f'/static/avatar/{filename}'
+                db_sess.commit()
 
         if request.form['last']:
             last = request.form['last']
@@ -51,6 +53,6 @@ def profile():
             else:
                 return render_template("profile.html",
                                        message='Пароль не верный')
-        return render_template('profile.html')
+        return render_template('profile.html', avatar_url=current_user.avatar)
 
 
