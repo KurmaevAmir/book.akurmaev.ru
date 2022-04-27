@@ -16,4 +16,6 @@ def index():
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
     user.booking = user.shopping_cart
+    user.shopping_cart = ''
+    db_sess.commit()
     return redirect('../')

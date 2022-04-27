@@ -16,6 +16,7 @@ from data.blueprint_register import blueprint_register
 from data.blueprint_cart import blueprint_cart
 from data.blueprint_cart_add import blueprint_cart_add
 from data.blueprint_cart_delete import blueprint_cart_delete
+from data.blueprint_booking import blueprint_booking
 from flask_login import LoginManager
 from data.users import User
 
@@ -39,6 +40,7 @@ app.register_blueprint(blueprint_login, name="login")
 app.register_blueprint(blueprint_cart, name="cart")
 app.register_blueprint(blueprint_cart_add, name="cart_add")
 app.register_blueprint(blueprint_cart_delete, name="cart_delete")
+app.register_blueprint(blueprint_booking, name="booking")
 
 
 @login_manager.user_loader

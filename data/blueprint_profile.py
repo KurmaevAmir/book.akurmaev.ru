@@ -22,7 +22,7 @@ def profile():
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
     if request.method == 'GET':
-        return render_template("profile.html")
+        return render_template("profile.html", avatar_url=user.avatar)
     elif request.method == 'POST':
         f = 0
         last = 0
@@ -33,7 +33,7 @@ def profile():
                 extension = f.filename.split(".")[-1]
                 filename = f'{user.id}.{extension}'
                 f.save(os.path.join(UPLOAD_FOLDER_AVATAR, filename))
-                user.avatar = f'/static/avatar/{filename}'
+                user.avatar = f'/static/avatars/{filename}'
                 db_sess.commit()
 
         if request.form['last']:
@@ -53,6 +53,6 @@ def profile():
             else:
                 return render_template("profile.html",
                                        message='Пароль не верный')
-        return render_template('profile.html', avatar_url=current_user.avatar)
+        return render_template('profile.html', avatar_url=user.avatar)
 
 
