@@ -15,6 +15,8 @@ def index(id):
         title = book.title
         img_src = book.image
         description = book.content
+        book_id = book.id
     return render_template("first_book.html", title=title,
                            img_src=img_src,
-                           description=description)
+                           description=description,
+                           book_id=book_id)
