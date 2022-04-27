@@ -1,11 +1,13 @@
 import datetime
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from werkzeug.utils import redirect
 
 from data import db_session
 from data.SendEmail.blueprint_email_confirmation import confirmation
+from data.blueprint_add_book import add_book
 from data.books import Books
+from data.data_to_save import UPLOAD_FOLDER
 from data.first_book import books
 from data.search import search
 from data.blueprint_login import blueprint_login
@@ -16,8 +18,14 @@ from data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Z,kjrjTds_secret_key'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
+    days=365
+)
+
 app.register_blueprint(books, url_prefix="/book")
 app.register_blueprint(search, url_prefix="/search")
+app.register_blueprint(add_book, url_prefix="/add_book")
 app.register_blueprint(confirmation,
                        url_prefix="/email_confirmation")
 login_manager = LoginManager()
@@ -36,6 +44,7 @@ def load_user(user_id):
 @app.route('/', methods=["POST", "GET"])
 @app.route('/index', methods=["POST", "GET"])
 def index():
+    session.get("id_user", 0)
     if request.method == "GET":
         db_session.global_init("db/users_data.db")
         db_sess = db_session.create_session()
@@ -70,24 +79,25 @@ def index():
         for book in db_sess.query(Books).filter((Books.limitation ==
                                                  "Средняя школа") |
                                                 (Books.limitation.in_(
-                                                    numbers_list[4:8]))):
+                                                    numbers_list[4:8])))[:3]:
             secondary_school_list.append((book.content, book.image, f'book/{book.id}'))
 
         high_school_list = []
         for book in db_sess.query(Books).filter((Books.limitation ==
                                                  "Старшая школа") |
                                                 (Books.limitation.in_(
-                                                    numbers_list[9:10]))):
+                                                    numbers_list[9:10])))[:3]:
             high_school_list.append((book.content, book.image, f'book/{book.id}'))
 
         students_list = []
         for book in db_sess.query(Books).filter((Books.limitation ==
                                                  "Студентам") |
                                                 (Books.limitation ==
-                                                 (numbers_list[-1]))):
+                                                 (numbers_list[-1])))[:3]:
             students_list.append((book.content, book.image, f'book/{book.id}'))
 
         return render_template("index.html",
+                               title="book.akurmaev.ru",
                                recommendations_list=recommendations_list,
                                novelties_list=novelties_list,
                                primary_school_list=primary_school_list,

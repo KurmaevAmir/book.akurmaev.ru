@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Добавление книги</h1>
+    <form class="add_book" action="" method="post"
+    enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title() }}<br>
+            {% for error in form.title.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.author.label }}<br>
+            {{ form.author() }}<br>
+            {% for error in form.author.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.content.label }}<br>
+            {{ form.content() }}<br>
+            {% for error in form.content.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.image.label }}<br>
+            {{ form.image() }}<br>
+            {% for error in form.image.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.status.label }}<br>
+            {{ form.status() }}<br>
+            {% for error in form.status.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.limitation.label }}<br>
+            {{ form.limitation() }}<br>
+            {% for error in form.limitation.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+        {{ message }}
+    </form>
+{% endblock %}
