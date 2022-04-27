@@ -34,7 +34,6 @@ def email_confirmation():
     send_email(data_session[1], "Подтверждение регистрации на сайте book.akurmaev.ru",
                confirmation_code)
     if form.validate_on_submit():
-        print(confirmation_code, form.confirmation_code.data)
         if confirmation_code == form.confirmation_code.data:
             db_sess = db_session.create_session()
             user = User()
