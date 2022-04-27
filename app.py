@@ -4,14 +4,14 @@ from flask import Flask, render_template, request
 from werkzeug.utils import redirect
 
 from data import db_session
-from data.blueprint_email_confirmation import confirmation
+from data.SendEmail.blueprint_email_confirmation import confirmation
 from data.books import Books
 from data.first_book import books
 from data.search import search
 from data.blueprint_login import blueprint_login
 from data.blueprint_profile import blueprint_profile
 from data.blueprint_register import blueprint_register
-from flask_login import LoginManager, login_required, logout_user
+from flask_login import LoginManager
 from data.users import User
 
 app = Flask(__name__)
