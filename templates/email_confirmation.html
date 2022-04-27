@@ -1,0 +1,20 @@
+{% extends "base.html"%}
+
+{% block content %}
+    <form action="", method="post" novalidate>
+        <div class="email_confirmation">
+            <p>{{ message }}</p>
+            {{ form.hidden_tag() }}
+            <p style="max-width: 180px; margin-left: auto; margin-right: auto" align="center">
+                {{ form.confirmation_code.label }}<br>
+                {{ form.confirmation_code(class="form-control") }}
+                {% for error in form.confirmation_code.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p align="center">{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+        </div>
+    </form>
+{% endblock %}

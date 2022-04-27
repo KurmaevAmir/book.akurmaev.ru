@@ -20,6 +20,8 @@ class User(SqlAlchemyBase, UserMixin):
     rights = sqlalchemy.Column(sqlalchemy.String, default="User")
     email = sqlalchemy.Column(sqlalchemy.String,
                               index=True, unique=True, nullable=True)
+    security_code = sqlalchemy.Column(sqlalchemy.String,
+                                      nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String,
                                         nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,

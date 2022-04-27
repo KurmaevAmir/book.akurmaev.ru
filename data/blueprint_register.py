@@ -1,5 +1,7 @@
 import datetime
-from flask import Blueprint, render_template, redirect
+import random
+
+from flask import Blueprint, render_template, redirect, session
 from data import db_session
 from data.register import RegisterForm
 from data.users import User
@@ -31,16 +33,12 @@ def register():
             return render_template('register.html',
                                    form=form,
                                    message="Такой пользователь уже есть")
-        user = User(
-            name=form.name.data,
-            email=form.email.data,
-            hashed_password=form.password.data,
-            created_date=datetime.datetime.now(),
-            parallel_number_student=form.number.data,
-            letter=form.letter.data
-        )
-        user.set_password(form.password.data)
-        db_sess.add(user)
-        db_sess.commit()
-        return redirect('/login')
+        session.get('login_data', 0)
+        confirmation_code = ""
+        for i in range(6):
+            confirmation_code += str(random.randint(0, 9))
+        session["login_data"] = [form.name.data, form.email.data,
+                                 form.password.data, form.number.data,
+                                 form.letter.data, confirmation_code]
+        return redirect('/email_confirmation')
     return render_template('register.html', form=form)

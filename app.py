@@ -4,19 +4,22 @@ from flask import Flask, render_template, request
 from werkzeug.utils import redirect
 
 from data import db_session
+from data.SendEmail.blueprint_email_confirmation import confirmation
 from data.books import Books
 from data.first_book import books
 from data.search import search
 from data.blueprint_login import blueprint_login
 from data.blueprint_profile import blueprint_profile
 from data.blueprint_register import blueprint_register
-from flask_login import LoginManager, login_required, logout_user
+from flask_login import LoginManager
 from data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Z,kjrjTds_secret_key'
 app.register_blueprint(books, url_prefix="/book")
 app.register_blueprint(search, url_prefix="/search")
+app.register_blueprint(confirmation,
+                       url_prefix="/email_confirmation")
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.register_blueprint(blueprint_profile, name="profile")
