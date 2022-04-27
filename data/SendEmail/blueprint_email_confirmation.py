@@ -1,7 +1,7 @@
 import random
 
 from dotenv import load_dotenv
-from flask import Blueprint, render_template, session
+from flask import Blueprint, render_template, session, abort
 from werkzeug.utils import redirect
 
 from data import db_session
@@ -26,7 +26,10 @@ def creating_confirmation_code(confirmation_code):
 @confirmation.route("/", methods=["GET", "POST"])
 def email_confirmation():
     form = EmailConfirmation()
-    data_session = session["login_data"]
+    try:
+        data_session = session["login_data"]
+    except:
+        abort(404)
     confirmation_code = data_session[-1]
     send_email(data_session[1], "Подтверждение регистрации на сайте book.akurmaev.ru",
                confirmation_code)
