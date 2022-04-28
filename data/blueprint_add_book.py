@@ -2,7 +2,7 @@ import os
 import random
 
 import flask
-from flask import render_template, session
+from flask import render_template, session, request
 from flask_login import current_user
 from werkzeug.exceptions import abort
 from werkzeug.utils import redirect, secure_filename
@@ -81,6 +81,10 @@ def adding():
                     db_sess.merge(current_user)
                     db_sess.commit()
                     return redirect('/')
+            if request.method == "POST":
+                if request.form['search']:
+                    text = request.form['search'].replace(" ", '%')
+                    return redirect(f'/search/{text}')
             return render_template("add_book.html",
                                    title="Добавление книги",
                                    form=form)

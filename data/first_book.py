@@ -8,7 +8,7 @@ books = Blueprint("first_book", __name__,
                   template_folder="templates")
 
 
-@books.route('/<int:id>', methods=['GET'])
+@books.route('/<int:id>', methods=['GET', "POST"])
 def index(id):
     db_session.global_init("db/users_data.db")
     db_sess = db_session.create_session()

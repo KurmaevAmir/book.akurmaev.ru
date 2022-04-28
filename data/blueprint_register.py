@@ -1,7 +1,6 @@
-import datetime
 import random
 
-from flask import Blueprint, render_template, redirect, session
+from flask import Blueprint, render_template, redirect, session, request
 from data import db_session
 from data.register import RegisterForm
 from data.users import User
@@ -41,4 +40,8 @@ def register():
                                  form.password.data, form.number.data,
                                  form.letter.data, confirmation_code]
         return redirect('/email_confirmation')
+    if request.method == "POST":
+        if request.form['search']:
+            text = request.form['search'].replace(" ", '%')
+            return redirect(f'/search/{text}')
     return render_template('register.html', form=form)

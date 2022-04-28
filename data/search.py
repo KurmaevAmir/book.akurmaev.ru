@@ -14,13 +14,14 @@ def searching(keys):
     if request.method == "GET":
         title = keys.replace("%", " ")
         keys = keys.replace("%", "% %")
+        keys += "%"
+        keys = "%" + keys
         db_session.global_init("db/users_data.db")
         db_sess = db_session.create_session()
         output_list = []
         for book in db_sess.query(Books).filter(
                 ((Books.title.like(keys)) |
-                 (Books.author.like(keys)))
-        ):
+                 (Books.author.like(keys)))):
             output_list.append((book.id, book.title, book.image))
         if not bool(output_list):
             return render_template("search.html", title=title, status=False)
