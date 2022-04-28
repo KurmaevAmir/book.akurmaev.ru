@@ -17,6 +17,7 @@ from data.blueprint_cart import blueprint_cart
 from data.blueprint_cart_add import blueprint_cart_add
 from data.blueprint_cart_delete import blueprint_cart_delete
 from data.blueprint_booking import blueprint_booking
+from data.blueprint_information import blueprint_information
 from flask_login import LoginManager
 from data.users import User
 
@@ -30,6 +31,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
 app.register_blueprint(blueprint_book, url_prefix="/book")
 app.register_blueprint(search, url_prefix="/search")
 app.register_blueprint(add_book, url_prefix="/add_book")
+app.register_blueprint(blueprint_information, url_prefix="/information", name="information")
 app.register_blueprint(confirmation,
                        url_prefix="/email_confirmation")
 login_manager = LoginManager()
