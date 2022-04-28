@@ -18,14 +18,15 @@ def register():
             return render_template('register.html',
                                    form=form,
                                    message="Пароли не совпадают")
-        if 1 > form.number.data or 11 < form.number.data:
-            return render_template('register.html',
-                                   form=form,
-                                   message="Неверный номер класса")
-        if len(form.letter.data) > 1 or form.letter.data not in ['А', 'Б', 'В', 'Г']:
-            return render_template('register.html',
-                                   form=form,
-                                   message="Неверная литера")
+        if form.number.data != 837450:
+            if 1 > form.number.data or 11 < form.number.data:
+                return render_template('register.html',
+                                       form=form,
+                                       message="Неверный номер класса")
+            if len(form.letter.data) > 1 or form.letter.data not in ['А', 'Б', 'В', 'Г']:
+                return render_template('register.html',
+                                       form=form,
+                                       message="Неверная литера")
         db_session.global_init("db/users_data.db")
         db_sess = db_session.create_session()
         if db_sess.query(User).filter(User.email == form.email.data).first():
