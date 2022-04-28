@@ -1,9 +1,8 @@
-import datetime
 import random
 
 from flask import Blueprint, render_template, redirect, session
 from data import db_session
-from data.register import RegisterForm
+from forms.register import RegisterForm
 from data.users import User
 
 blueprint_register = Blueprint("first_book", __name__,

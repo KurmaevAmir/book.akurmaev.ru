@@ -5,7 +5,7 @@ import flask
 from flask import render_template, session
 from flask_login import current_user
 from werkzeug.exceptions import abort
-from werkzeug.utils import redirect, secure_filename
+from werkzeug.utils import redirect
 from flask import current_app
 
 from data import db_session
