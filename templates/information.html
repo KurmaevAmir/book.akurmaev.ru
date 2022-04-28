@@ -14,10 +14,7 @@
         <tr style="border-bottom:1px #8d7f52 solid">
             <td>
                 <div class="name_trash" style="display: flex">
-                    <form method="post">
-                        <a href="/user_delete/{{ i.id }}" style="margin-top: 10px"><i class="fa fa-trash"></i></a>
-                    </form>
-
+                    <a href="/information/user_delete/{{ i[-1] }}" style="margin-top: 10px"><i class="fa fa-trash"></i></a>
                     <h3 style="text-align: start; margin-left: 20px">{{ i[0] }}:</h3>
                 </div>
                 <h5 style="text-align: start; margin-left: 35px">- {{ i[1] }}</h5>
@@ -29,9 +26,5 @@
         </tbody>
     </table>
 
-<!--    {% for i in array %}-->
-<!--    <h3>{{ i[0] }}:</h3>-->
-<!--    <h5>-&#45;&#45;&#45;&#45;&#45;&#45;{{ i[1] }}</h5><br>-->
-<!--    {% endfor %}-->
 </div>
 {% endblock %}
