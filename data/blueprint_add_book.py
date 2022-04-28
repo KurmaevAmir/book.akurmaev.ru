@@ -51,7 +51,7 @@ def adding():
     try:
         user = db_sess.query(User).filter(User.id ==
                                           session["id_user"]).first()
-        if user.rights == "Admin":
+        if user.rights in ['Admin', 'Librarian']:
             form = BookForm()
             if form.validate_on_submit():
                 if form.image.data and \
