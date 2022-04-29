@@ -29,9 +29,10 @@
             </button>
             <div class="collapse navbar-collapse" style="align-items: baseline;" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
-                    <li class="nav-item"><a class="nav-link" href="#">Библиотеки</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Каталог</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Коллекции</a></li>
+                {% if current_user.rights in ['Admin', 'Librarian'] %}
+                    <li class="nav-item"><a class="nav-link" href="/information">Заказы</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/add_book">Добавить книгу</a></li>
+                {% endif %}
                 </ul>
 
                 <ul class="navbar-nav me-lg-3 mb-2 mb-lg-0">
