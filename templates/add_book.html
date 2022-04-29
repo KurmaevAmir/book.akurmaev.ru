@@ -6,6 +6,7 @@
     <form class="add_book" action="" method="post"
     enctype="multipart/form-data">
         {{ form.hidden_tag() }}
+        <p>{{ message }}</p>
         <p>
             {{ form.title.label }}<br>
             {{ form.title() }}<br>

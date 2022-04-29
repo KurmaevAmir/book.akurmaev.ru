@@ -70,10 +70,14 @@ def adding():
                     books.content = form.content.data
                     books.author = form.author.data
                     books.image = "/" + file_path
-                    if form.status.data < 0:
-                        books.status = "out"
-                    elif form.status.data == 0:
-                        books.status = "out"
+                    try:
+                        if int(form.status.data) <= 0:
+                            books.status = "0"
+                    except:
+                        return render_template("add_book.html",
+                                               message="Невозможное значение",
+                                               title="Добавление книги",
+                                               form=form)
                     else:
                         books.status = str(form.status.data)
                     books.limitation = form.limitation.data
