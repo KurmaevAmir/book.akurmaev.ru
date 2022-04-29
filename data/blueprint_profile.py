@@ -36,10 +36,7 @@ def profile():
                 f.save(os.path.join(UPLOAD_FOLDER_AVATAR, filename))
                 user.avatar = f'/static/img/avatars/{filename}'
                 db_sess.commit()
-        if request.form["button_search"] == "active":
-            if request.form["search"]:
-                return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
-        elif request.form["save_changes"] == "active":
+        if request.form["last"]:
             last = request.form['last']
             new = request.form['new']
             new_again = request.form['new_again']
