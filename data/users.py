@@ -22,10 +22,15 @@ class User(SqlAlchemyBase, UserMixin):
                               index=True, unique=True, nullable=True)
     security_code = sqlalchemy.Column(sqlalchemy.String,
                                       nullable=True)
+    booking = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    avatar = sqlalchemy.Column(sqlalchemy.String, nullable=True,
+                               default="/static/img/standart.jpg")
     hashed_password = sqlalchemy.Column(sqlalchemy.String,
                                         nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=datetime.date.today)
+    shopping_cart = sqlalchemy.Column(sqlalchemy.String, nullable=True,
+                                      default="")
     books = orm.relation("Books", back_populates='user')
 
     def set_password(self, password):

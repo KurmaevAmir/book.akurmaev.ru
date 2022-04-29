@@ -8,11 +8,16 @@ from data.SendEmail.blueprint_email_confirmation import confirmation
 from data.blueprint_add_book import add_book
 from data.books import Books
 from data.data_to_save import UPLOAD_FOLDER
-from data.first_book import books
+from data.blueprint_book import blueprint_book
 from data.search import search
 from data.blueprint_login import blueprint_login
 from data.blueprint_profile import blueprint_profile
 from data.blueprint_register import blueprint_register
+from data.blueprint_cart import blueprint_cart
+from data.blueprint_cart_add import blueprint_cart_add
+from data.blueprint_cart_delete import blueprint_cart_delete
+from data.blueprint_booking import blueprint_booking
+from data.blueprint_information import blueprint_information
 from flask_login import LoginManager
 from data.users import User
 
@@ -23,9 +28,10 @@ app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
     days=365
 )
 
-app.register_blueprint(books, url_prefix="/book")
+app.register_blueprint(blueprint_book, url_prefix="/book")
 app.register_blueprint(search, url_prefix="/search")
 app.register_blueprint(add_book, url_prefix="/add_book")
+app.register_blueprint(blueprint_information, url_prefix="/information", name="information")
 app.register_blueprint(confirmation,
                        url_prefix="/email_confirmation")
 login_manager = LoginManager()
@@ -33,6 +39,10 @@ login_manager.init_app(app)
 app.register_blueprint(blueprint_profile, name="profile")
 app.register_blueprint(blueprint_register, name="register")
 app.register_blueprint(blueprint_login, name="login")
+app.register_blueprint(blueprint_cart, name="cart")
+app.register_blueprint(blueprint_cart_add, name="cart_add")
+app.register_blueprint(blueprint_cart_delete, name="cart_delete")
+app.register_blueprint(blueprint_booking, name="booking")
 
 
 @login_manager.user_loader

@@ -42,7 +42,13 @@ def email_confirmation():
             user.letter = data_session[4]
             user.email = data_session[1]
             user.security_code = data_session[5]
+            if data_session[3] == 837450:
+                user.rights = 'Librarian'
+                user.parallel_number_student = None
+                user.letter = None
+
             user.set_password(data_session[2])
+
             db_sess.add(user)
             db_sess.commit()
             session.pop("login_data", None)

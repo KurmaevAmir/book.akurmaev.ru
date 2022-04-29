@@ -5,7 +5,7 @@ import flask
 from flask import render_template, session
 from flask_login import current_user
 from werkzeug.exceptions import abort
-from werkzeug.utils import redirect, secure_filename
+from werkzeug.utils import redirect
 from flask import current_app
 
 from data import db_session
@@ -51,7 +51,7 @@ def adding():
     try:
         user = db_sess.query(User).filter(User.id ==
                                           session["id_user"]).first()
-        if user.rights == "Admin":
+        if user.rights in ['Admin', 'Librarian']:
             form = BookForm()
             if form.validate_on_submit():
                 if form.image.data and \

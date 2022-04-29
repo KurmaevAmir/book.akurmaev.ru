@@ -6,6 +6,7 @@
 	margin-top: 30px;
 	justify-content: space-between;
 	max-height: 380px;
+	max-width: 500px;
 }
 
 .card_buttons {

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, session
 from data import db_session
 from data.users import User
-from data.login import LoginForm
+from forms.login import LoginForm
 from flask_login import login_user, login_required, logout_user
 
 blueprint_login = Blueprint("first_book", __name__,
