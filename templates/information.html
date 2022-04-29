@@ -8,19 +8,21 @@
 
     <table class="table">
         <tbody>
-
         {% for i in array %}
+        {% set x = loop.index %}
+        {% for j in i[-1] %}
 
         <tr style="border-bottom:1px #8d7f52 solid">
             <td>
                 <div class="name_trash" style="display: flex">
-                    <a href="/information/user_delete/{{ i[-1] }}" style="margin-top: 10px"><i class="fa fa-trash"></i></a>
+                    <a href="/information/user_delete/{{ book_id[x - 1][i[-1].index(j)] }}/{{ i[2] }}" style="margin-top: 10px"><i class="fa fa-trash"></i></a>
                     <h3 style="text-align: start; margin-left: 20px">{{ i[0] }}:</h3>
                 </div>
-                <h5 style="text-align: start; margin-left: 35px">- {{ i[1] }}</h5>
+                <h5 style="text-align: start; margin-left: 35px">- {{ j }}</h5>
             </td>
         </tr>
 
+        {% endfor %}
         {% endfor %}
 
         </tbody>

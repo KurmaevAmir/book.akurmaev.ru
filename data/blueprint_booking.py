@@ -15,7 +15,10 @@ def index():
     db_session.global_init("db/users_data.db")
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
-    user.booking = user.shopping_cart
+    if user.booking == '':
+        user.booking = user.shopping_cart
+    else:
+        user.booking += f', {user.shopping_cart}'
     user.shopping_cart = ''
     db_sess.commit()
     return redirect('../')
