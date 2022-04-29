@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="static/css/search.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/search.css" />
 {% extends "base.html" %}
-    
+
 {% block content %}
     <div class="search">
         {% if status%}
@@ -12,7 +12,7 @@
                             {% if (j + i) <= (len_output - 1) %}
                                 <th>
                                     <a href="../book/{{ output_list[j + i][0] }}">
-                                        <img src="{{ output_list[j + i][2] }}" 
+                                        <img src="{{ output_list[j + i][2] }}"
                                         alt="{{ output_list[j + i][1] }}">
                                     </a>
                                 </th>

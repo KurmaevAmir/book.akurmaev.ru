@@ -49,6 +49,10 @@ def info_delete(id, user_id):
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == user_id).first()
     book = db_sess.query(Books).filter(Books.id == id).first()
+    if book.status == '':
+        book.status = '1'
+    else:
+        book.status = str(int(book.status) + 1)
 
     if ', ' in user.booking:
         book_len = len(book.title)
