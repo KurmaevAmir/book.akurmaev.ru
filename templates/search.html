@@ -4,7 +4,7 @@
 {% block content %}
     <div class="search">
         {% if status%}
-            <h1>По запросу {{ keys }} найдено:</h1>
+            <h2 style="color: white;">По запросу {{ keys }} найдено:</h2>
             <table align="center" class="table_search">
                 {% for i in range(0, len_output, 3) %}
                     <tr>
@@ -22,7 +22,7 @@
                 {% endfor %}
             </table>
         {% else %}
-            <h1>По введенному запросу ничего не найдено</h1>
+            <h2>По введенному запросу ничего не найдено</h2>
         {% endif %}
     </div>
 {% endblock %}

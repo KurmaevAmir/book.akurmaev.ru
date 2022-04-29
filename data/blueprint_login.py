@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, session
+from flask import Blueprint, render_template, redirect, session, request
 from data import db_session
 from data.users import User
 from forms.login import LoginForm
@@ -24,6 +24,10 @@ def login():
         return render_template('login.html',
                                message="Неправильный логин или пароль",
                                form=form)
+    if request.method == "POST":
+        if request.form['search']:
+            text = request.form['search'].replace(" ", '%')
+            return redirect(f'/search/{text}')
     return render_template('login.html', form=form)
 
 
