@@ -25,10 +25,6 @@ def profile():
     if request.method == 'GET':
         return render_template("profile.html", avatar_url=user.avatar)
     elif request.method == 'POST':
-        # if request.form['search']:
-        #     text = request.form['search'].replace(" ", '%')
-        #     return redirect(f'/search/{text}')
-
         f = 0
         last = 0
         if 'file' in request.files:
@@ -38,7 +34,7 @@ def profile():
                 extension = f.filename.split(".")[-1]
                 filename = f'{user.id}.{extension}'
                 f.save(os.path.join(UPLOAD_FOLDER_AVATAR, filename))
-                user.avatar = f'/static/avatars/{filename}'
+                user.avatar = f'/static/img/avatars/{filename}'
                 db_sess.commit()
 
         if request.form['last']:
