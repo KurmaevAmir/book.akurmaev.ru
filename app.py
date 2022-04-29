@@ -115,8 +115,10 @@ def index():
                                high_school_list=high_school_list,
                                students_list=students_list)
     elif request.method == "POST":
-        text = request.form['search'].replace(' ', '%')
-        return redirect(f"/search/{text}")
+        if request.form["button_search"] == "active":
+            if request.form["search"]:
+                return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
+        return redirect("/")
 
 
 if __name__ == '__main__':

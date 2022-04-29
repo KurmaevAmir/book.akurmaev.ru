@@ -1,7 +1,7 @@
 import random
 
 from dotenv import load_dotenv
-from flask import Blueprint, render_template, session, abort
+from flask import Blueprint, render_template, session, abort, request
 from werkzeug.utils import redirect
 
 from data import db_session
@@ -57,6 +57,10 @@ def email_confirmation():
                                form=form,
                                message="Неправильно указан "
                                        "код подтверждения")
+    if request.method == "POST":
+        if request.form["button_search"] == "active":
+            if request.form["search"]:
+                return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
     return render_template("email_confirmation.html",
                            title="Подтверждение почты",
                            form=form)

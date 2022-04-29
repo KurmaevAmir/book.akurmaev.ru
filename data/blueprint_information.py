@@ -1,5 +1,5 @@
 import flask
-from flask import render_template, redirect
+from flask import render_template, redirect, request
 from flask_login import current_user, login_required
 from data import db_session
 from data.users import User
@@ -12,7 +12,7 @@ blueprint_information = flask.Blueprint(
 )
 
 
-@blueprint_information.route("/")
+@blueprint_information.route("/", methods=["GET", "POST"])
 @login_required
 def info():
     db_session.global_init("db/users_data.db")
@@ -21,6 +21,10 @@ def info():
     a = []
 
     if current_user.rights in ['Admin', 'Librarian']:
+        if request.method == "POST":
+            if request.form["button_search"] == "active":
+                if request.form["search"]:
+                    return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
         books_id = []
         for i in user:
             book_title = []

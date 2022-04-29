@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect
 from flask_login import current_user, login_required
 from data.users import User
 from data.books import Books
@@ -9,9 +9,13 @@ blueprint_cart = Blueprint("first_book", __name__,
                   template_folder="templates")
 
 
-@blueprint_cart.route('/cart')
+@blueprint_cart.route('/cart', methods=["GET", "POST"])
 @login_required
 def index():
+    if request.method == "POST":
+        if request.form["button_search"] == "active":
+            if request.form["search"]:
+                return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
     array = []
     db_session.global_init("db/users_data.db")
     db_sess = db_session.create_session()

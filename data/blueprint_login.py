@@ -25,9 +25,9 @@ def login():
                                message="Неправильный логин или пароль",
                                form=form)
     if request.method == "POST":
-        if request.form['search']:
-            text = request.form['search'].replace(" ", '%')
-            return redirect(f'/search/{text}')
+        if request.form["button_search"] == "active":
+            if request.form["search"]:
+                return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
     return render_template('login.html', form=form)
 
 

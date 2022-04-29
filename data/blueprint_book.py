@@ -22,5 +22,7 @@ def index(id):
                                description=description,
                                book_id=book_id)
     elif request.method == "POST":
-        text = request.form['search'].replace(" ", '%')
-        return redirect(f'/search/{text}')
+        if request.form["button_search"] == "active":
+            if request.form["search"]:
+                return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
+        return redirect(f'/book/{id}')
