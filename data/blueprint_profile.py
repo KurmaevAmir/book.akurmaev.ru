@@ -6,8 +6,8 @@ from data.data_to_save import ALLOWED_EXTENSIONS, UPLOAD_FOLDER_AVATAR
 import os
 
 blueprint_profile = Blueprint("first_book", __name__,
-                      static_folder="static",
-                      template_folder="templates")
+                              static_folder="static",
+                              template_folder="templates")
 
 
 def allowed_file(filename):
@@ -49,7 +49,8 @@ def profile():
                     logout_user()
                     return redirect('../')
                 else:
-                    return render_template("profile.html", message='Пароли не совпадают')
+                    return render_template("profile.html",
+                                           message='Пароли не совпадают')
             else:
                 return render_template("profile.html",
                                        message='Пароль не верный')

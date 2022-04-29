@@ -31,7 +31,8 @@ app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
 app.register_blueprint(blueprint_book, url_prefix="/book")
 app.register_blueprint(search, url_prefix="/search")
 app.register_blueprint(add_book, url_prefix="/add_book")
-app.register_blueprint(blueprint_information, url_prefix="/information", name="information")
+app.register_blueprint(blueprint_information, url_prefix="/information",
+                       name="information")
 app.register_blueprint(confirmation,
                        url_prefix="/email_confirmation")
 login_manager = LoginManager()
@@ -61,7 +62,8 @@ def index():
 
         recommendations_list = []
         for book in db_sess.query(Books).filter(Books.rating > 0.9):
-            recommendations_list.append((book.content, book.image, f'book/{book.id}'))
+            recommendations_list.append((
+                book.content, book.image, f'book/{book.id}'))
 
         value_novelties = datetime.date.today() - datetime.timedelta(
             days=30)
@@ -83,21 +85,24 @@ def index():
                                                  "Начальная школа") |
                                                 (Books.limitation.in_(
                                                     numbers_list[:3]))):
-            primary_school_list.append((book.content, book.image, f'book/{book.id}'))
+            primary_school_list.append((
+                book.content, book.image, f'book/{book.id}'))
 
         secondary_school_list = []
         for book in db_sess.query(Books).filter((Books.limitation ==
                                                  "Средняя школа") |
                                                 (Books.limitation.in_(
                                                     numbers_list[4:8])))[:3]:
-            secondary_school_list.append((book.content, book.image, f'book/{book.id}'))
+            secondary_school_list.append((
+                book.content, book.image, f'book/{book.id}'))
 
         high_school_list = []
         for book in db_sess.query(Books).filter((Books.limitation ==
                                                  "Старшая школа") |
                                                 (Books.limitation.in_(
                                                     numbers_list[9:10])))[:3]:
-            high_school_list.append((book.content, book.image, f'book/{book.id}'))
+            high_school_list.append((
+                book.content, book.image, f'book/{book.id}'))
 
         students_list = []
         for book in db_sess.query(Books).filter((Books.limitation ==
@@ -117,7 +122,8 @@ def index():
     elif request.method == "POST":
         if request.form["button_search"] == "active":
             if request.form["search"]:
-                return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
+                return redirect(
+                    f'/search/{request.form["search"].replace(" ", "%")}')
         return redirect("/")
 
 

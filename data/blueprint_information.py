@@ -24,7 +24,8 @@ def info():
         if request.method == "POST":
             if request.form["button_search"] == "active":
                 if request.form["search"]:
-                    return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
+                    return redirect(
+                        f'/search/{request.form["search"].replace(" ", "%")}')
         books_id = []
         for i in user:
             book_title = []

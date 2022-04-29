@@ -88,7 +88,9 @@ def adding():
             if request.method == "POST":
                 if request.form["button_search"] == "active":
                     if request.form["search"]:
-                        return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
+                        return redirect(
+                            f'/search/'
+                            f'{request.form["search"].replace(" ", "%")}')
             return render_template("add_book.html",
                                    title="Добавление книги",
                                    form=form)

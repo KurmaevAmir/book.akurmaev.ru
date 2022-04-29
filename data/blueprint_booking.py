@@ -4,8 +4,8 @@ from data.users import User
 from data import db_session
 
 blueprint_booking = Blueprint("first_book", __name__,
-                  static_folder="static",
-                  template_folder="templates")
+                              static_folder="static",
+                              template_folder="templates")
 
 
 @blueprint_booking.route('/booking')

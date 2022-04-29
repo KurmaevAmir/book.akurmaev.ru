@@ -31,7 +31,8 @@ def email_confirmation():
     except:
         abort(404)
     confirmation_code = data_session[-1]
-    send_email(data_session[1], "Подтверждение регистрации на сайте book.akurmaev.ru",
+    send_email(data_session[1],
+               "Подтверждение регистрации на сайте book.akurmaev.ru",
                confirmation_code)
     if form.validate_on_submit():
         if confirmation_code == form.confirmation_code.data:
@@ -60,7 +61,9 @@ def email_confirmation():
     if request.method == "POST":
         if request.form["button_search"] == "active":
             if request.form["search"]:
-                return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
+                return \
+                    redirect(f'/search/'
+                             f'{request.form["search"].replace(" ", "%")}')
     return render_template("email_confirmation.html",
                            title="Подтверждение почты",
                            form=form)

@@ -6,8 +6,8 @@ from forms.register import RegisterForm
 from data.users import User
 
 blueprint_register = Blueprint("first_book", __name__,
-                      static_folder="static",
-                      template_folder="templates")
+                               static_folder="static",
+                               template_folder="templates")
 
 
 @blueprint_register.route('/register', methods=['GET', 'POST'])
@@ -23,7 +23,8 @@ def register():
                 return render_template('register.html',
                                        form=form,
                                        message="Неверный номер класса")
-            if len(form.letter.data) > 1 or form.letter.data not in ['А', 'Б', 'В', 'Г']:
+            if len(form.letter.data) > 1 or form.letter.data \
+                    not in ['А', 'Б', 'В', 'Г']:
                 return render_template('register.html',
                                        form=form,
                                        message="Неверная литера")
@@ -44,5 +45,6 @@ def register():
     if request.method == "POST":
         if request.form["button_search"] == "active":
             if request.form["search"]:
-                return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
+                return redirect(
+                    f'/search/{request.form["search"].replace(" ", "%")}')
     return render_template('register.html', form=form)

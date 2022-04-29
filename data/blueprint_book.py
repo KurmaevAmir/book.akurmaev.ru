@@ -3,8 +3,8 @@ from data import db_session
 from data.books import Books
 
 blueprint_book = Blueprint("first_book", __name__,
-                      static_folder="static",
-                      template_folder="templates")
+                           static_folder="static",
+                           template_folder="templates")
 
 
 @blueprint_book.route('/<int:id>', methods=["GET", "POST"])
@@ -24,5 +24,6 @@ def index(id):
     elif request.method == "POST":
         if request.form["button_search"] == "active":
             if request.form["search"]:
-                return redirect(f'/search/{request.form["search"].replace(" ", "%")}')
+                return redirect(
+                    f'/search/{request.form["search"].replace(" ", "%")}')
         return redirect(f'/book/{id}')

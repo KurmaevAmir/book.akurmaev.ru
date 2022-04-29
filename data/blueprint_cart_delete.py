@@ -4,8 +4,8 @@ from data.books import Books
 from data import db_session
 
 blueprint_cart_delete = Blueprint("first_book", __name__,
-                               static_folder="static",
-                               template_folder="templates")
+                                  static_folder="static",
+                                  template_folder="templates")
 
 
 @blueprint_cart_delete .route('/cart_delete/<int:id>')
@@ -21,11 +21,14 @@ def index(id):
     if ', ' in current_user.shopping_cart:
         book_len = len(book.title)
         if current_user.shopping_cart[:book_len] == book.title:
-            current_user.shopping_cart = current_user.shopping_cart.replace(f'{book.title}, ', '')
+            current_user.shopping_cart = \
+                current_user.shopping_cart.replace(f'{book.title}, ', '')
         else:
-            current_user.shopping_cart = current_user.shopping_cart.replace(f', {book.title}', '')
+            current_user.shopping_cart = \
+                current_user.shopping_cart.replace(f', {book.title}', '')
     else:
-        current_user.shopping_cart = current_user.shopping_cart.replace(book.title, '')
+        current_user.shopping_cart = \
+            current_user.shopping_cart.replace(book.title, '')
     db_sess.merge(current_user)
     db_sess.commit()
     return redirect("/cart")
