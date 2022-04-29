@@ -15,7 +15,7 @@ def index():
     db_session.global_init("db/users_data.db")
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
-    if user.booking == '':
+    if user.booking == '' or user.booking is None:
         user.booking = user.shopping_cart
     else:
         user.booking += f', {user.shopping_cart}'

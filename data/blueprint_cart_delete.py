@@ -14,7 +14,10 @@ def index(id):
     db_session.global_init("db/users_data.db")
     db_sess = db_session.create_session()
     book = db_sess.query(Books).filter(Books.id == id).first()
-    book.status = 'in'
+    if book.status == '':
+        book.status = '1'
+    else:
+        book.status = str(int(book.status) + 1)
     if ', ' in current_user.shopping_cart:
         book_len = len(book.title)
         if current_user.shopping_cart[:book_len] == book.title:

@@ -10,7 +10,6 @@ blueprint_profile = Blueprint("first_book", __name__,
                       template_folder="templates")
 
 
-@blueprint_profile.route('/profile', methods=['GET', 'POST'])
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -19,16 +18,17 @@ def allowed_file(filename):
 @blueprint_profile.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    if request.method == "POST":
-        if request.form['search'] and request.method == "POST":
-            text = request.form['search'].replace(" ", '%')
-            return redirect(f'/search/{text}')
     db_session.global_init("db/users_data.db")
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.id == current_user.id).first()
+
     if request.method == 'GET':
         return render_template("profile.html", avatar_url=user.avatar)
     elif request.method == 'POST':
+        # if request.form['search']:
+        #     text = request.form['search'].replace(" ", '%')
+        #     return redirect(f'/search/{text}')
+
         f = 0
         last = 0
         if 'file' in request.files:
@@ -59,5 +59,3 @@ def profile():
                 return render_template("profile.html",
                                        message='Пароль не верный')
         return render_template('profile.html', avatar_url=user.avatar)
-
-
