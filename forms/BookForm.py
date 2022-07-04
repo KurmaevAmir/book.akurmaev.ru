@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, RadioField, FileField, SubmitField
+from wtforms import StringField, RadioField, FileField, SubmitField, IntegerField
 from wtforms.validators import DataRequired
 
 
@@ -17,4 +17,7 @@ class BookForm(FlaskForm):
                                      "Средняя школа",
                                      "Старшая школа",
                                      "Студентам"])
+    publishing_house = StringField("Издательство", validators=[DataRequired()])
+    year_publishing = StringField("Год издания", validators=[DataRequired()])
+    number_of_pages = IntegerField("Количество страниц", validators=[DataRequired()])
     submit = SubmitField("Применить")

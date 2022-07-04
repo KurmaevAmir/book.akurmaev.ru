@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Добавление книги</h1>
+    <h1 style="color: white; text-shadow: 2px 2px 1px #343434; ">Добавление книги</h1>
     <form class="add_book" action="" method="post"
     enctype="multipart/form-data">
         {{ form.hidden_tag() }}
@@ -56,6 +56,33 @@
             {{ form.limitation.label }}<br>
             {{ form.limitation() }}<br>
             {% for error in form.limitation.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.publishing_house.label }}<br>
+            {{ form.publishing_house() }}<br>
+            {% for error in form.publishing_house.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.year_publishing.label }}<br>
+            {{ form.year_publishing() }}<br>
+            {% for error in form.year_publishing.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.number_of_pages.label }}<br>
+            {{ form.number_of_pages() }}<br>
+            {% for error in form.number_of_pages.errors %}
                 <p class="alert alert-danger" role="alert">
                     {{ error }}
                 </p>

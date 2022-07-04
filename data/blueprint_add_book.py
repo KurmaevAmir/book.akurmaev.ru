@@ -81,6 +81,9 @@ def adding():
                     else:
                         books.status = str(form.status.data)
                     books.limitation = form.limitation.data
+                    books.publishing_house = form.publishing_house.data
+                    books.year_publishing = form.year_publishing.data
+                    books.number_of_pages = form.number_of_pages.data
                     current_user.books.append(books)
                     db_sess.merge(current_user)
                     db_sess.commit()

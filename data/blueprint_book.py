@@ -17,10 +17,16 @@ def index(id):
             img_src = book.image
             description = book.content
             book_id = book.id
+            publishing_house = book.publishing_house
+            year_publishing = book.year_publishing
+            number_of_pages = book.number_of_pages
         return render_template("first_book.html", title=title,
                                img_src=img_src,
                                description=description,
-                               book_id=book_id)
+                               book_id=book_id,
+                               publishing_house=publishing_house,
+                               year_publishing=year_publishing,
+                               number_of_pages=number_of_pages)
     elif request.method == "POST":
         if request.form["button_search"] == "active":
             if request.form["search"]:
