@@ -6,7 +6,7 @@
     <form class="add_book" action="" method="post"
     enctype="multipart/form-data">
         {{ form.hidden_tag() }}
-        <p>{{ message }}</p>
+        <h5 style="color: red;">{{ message }}</h5>
         <p>
             {{ form.title.label }}<br>
             {{ form.title() }}<br>
@@ -88,7 +88,15 @@
                 </p>
             {% endfor %}
         </p>
+        <p>
+            {{ form.barcode.label }}<br>
+            {{ form.barcode() }}<br>
+            {% for error in form.barcode.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
         <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
-        {{ message }}
     </form>
 {% endblock %}

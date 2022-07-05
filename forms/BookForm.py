@@ -20,4 +20,5 @@ class BookForm(FlaskForm):
     publishing_house = StringField("Издательство", validators=[DataRequired()])
     year_publishing = StringField("Год издания", validators=[DataRequired()])
     number_of_pages = IntegerField("Количество страниц", validators=[DataRequired()])
+    barcode = StringField("Штрих-код", validators=[DataRequired()])
     submit = SubmitField("Применить")

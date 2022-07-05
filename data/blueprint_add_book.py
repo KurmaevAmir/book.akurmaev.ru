@@ -84,10 +84,16 @@ def adding():
                     books.publishing_house = form.publishing_house.data
                     books.year_publishing = form.year_publishing.data
                     books.number_of_pages = form.number_of_pages.data
+                    books.barcode = form.barcode.data
                     current_user.books.append(books)
                     db_sess.merge(current_user)
                     db_sess.commit()
                     return redirect('/')
+                else:
+                    return render_template("add_book.html",
+                                           message="Некорректный формат изображения",
+                                           title="Добавление книги",
+                                           form=form)
             if request.method == "POST":
                 if request.form["button_search"] == "active":
                     if request.form["search"]:
