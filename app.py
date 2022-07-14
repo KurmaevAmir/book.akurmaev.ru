@@ -18,6 +18,7 @@ from data.blueprint_cart_add import blueprint_cart_add
 from data.blueprint_cart_delete import blueprint_cart_delete
 from data.blueprint_booking import blueprint_booking
 from data.blueprint_information import blueprint_information
+from data.blueprint_cloud import cloud
 from flask_login import LoginManager
 from data.users import User
 
@@ -44,6 +45,7 @@ app.register_blueprint(blueprint_cart, name="cart")
 app.register_blueprint(blueprint_cart_add, name="cart_add")
 app.register_blueprint(blueprint_cart_delete, name="cart_delete")
 app.register_blueprint(blueprint_booking, name="booking")
+app.register_blueprint(cloud, url_prefix='/cloud')
 
 
 @login_manager.user_loader
@@ -128,4 +130,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)

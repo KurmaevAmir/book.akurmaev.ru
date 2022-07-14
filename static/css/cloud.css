@@ -1,0 +1,23 @@
+.table_cloud table{
+	border-spacing: 7px 11px;
+}
+
+tr {
+	height: 533px;
+	width: 350px;
+}
+
+h1 {
+	color: white;
+	text-shadow: 2px 2px 1px #343434;
+}
+
+a {
+	color: #D6D6D6;
+	text-shadow: 2px 2px 1px #343434;
+}
+
+a:hover {
+	color: #FFFFFF;
+	text-shadow: 2px 2px 1px #343434;
+}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Электронные версии</h1>
+	<table>
+		{% for i in links_list %}
+			<tr>
+				<th>
+					<h4><a href={{ links_list[loop.index0] }} target="_blank">Документация по сайту book.akurmaev.ru</a></h4>
+				</th>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
