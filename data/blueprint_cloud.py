@@ -10,5 +10,5 @@ cloud = flask.Blueprint(
 
 @cloud.route("/")
 def cloud_storage():
-    links_list = ['https://disk.yandex.ru/i/0MdRmrzIu1i0zA']
+    links_list = [('https://disk.yandex.ru/i/0MdRmrzIu1i0zA', 'Документация по сайту book.akurmaev.ru')]
     return render_template('cloud.html', links_list=links_list)

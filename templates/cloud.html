@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h1>Электронные версии</h1>
-	<table>
-		{% for i in links_list %}
-			<tr>
-				<th>
-					<h4><a href={{ links_list[loop.index0] }} target="_blank">Документация по сайту book.akurmaev.ru</a></h4>
-				</th>
-			</tr>
-		{% endfor %}
-	</table>
+	<div class="cloud">
+		<div class="card mb-3" style="background-color: #ddd9cd; max-width: 85%; max-height: 85%;">
+			<div class="body_card">
+				<h1 align="center">Электронные версии</h1>
+				<table class="table_cloud">
+					{% for i in links_list %}
+						<ul>
+							<h4><li><a href={{ i[0] }} target="_blank">{{ i[1] }}</a></li></h4>
+						</ul>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>
 {% endblock %}
