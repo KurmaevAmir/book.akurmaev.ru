@@ -14,6 +14,9 @@ class Books(SqlAlchemyBase, UserMixin):
     title = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     author = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     content = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    publishing_house = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    year_publishing = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    number_of_pages = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     limitation = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     image = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     rating = sqlalchemy.Column(sqlalchemy.Float, default=0.5,
