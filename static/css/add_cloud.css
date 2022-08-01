@@ -1,0 +1,28 @@
+h1 {
+    color: white;
+    text-shadow: 2px 2px 1px #343434;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p {
+    color: black;
+}
+
+ul {
+    color: black;
+}
+
+form.add_cloud {
+    margin-left: auto;
+    margin-right: auto;
+    width: 450 px;
+    background-color: #ddd9cd;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+h5 {
+    color: red;
+}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Добавление электронной версии</h1>
+    <form class="add_cloud" action="" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <h5>{{ message }}</h5>
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title() }}<br>
+            {% for error in form.title.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.author.label }}<br>
+            {{ form.author() }}<br>
+            {% for error in form.author.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.link.label }}<br>
+            {{ form.link() }}<br>
+            {% for error in form.link.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit(type="submit", class="btn-primary") }}</p>
+    </form>
+{% endblock %}

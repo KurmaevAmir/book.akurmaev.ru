@@ -8,4 +8,5 @@ class CloudForm(FlaskForm):
                         validators=[DataRequired()])
     link = StringField("Ссылка на электронную версию",
                        validators=[DataRequired()])
+    author = StringField("Автор", validators=[DataRequired()])
     submit = SubmitField("Применить")

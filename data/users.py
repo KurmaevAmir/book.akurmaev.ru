@@ -32,6 +32,7 @@ class User(SqlAlchemyBase, UserMixin):
     shopping_cart = sqlalchemy.Column(sqlalchemy.String, nullable=True,
                                       default="")
     books = orm.relation("Books", back_populates='user')
+    electronic_version = orm.relation("ElectronicVersion", back_populates="user")
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)

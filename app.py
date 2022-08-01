@@ -6,6 +6,7 @@ from werkzeug.utils import redirect
 from data import db_session
 from data.SendEmail.blueprint_email_confirmation import confirmation
 from data.blueprint_add_book import add_book
+from data.blueprint_add_cloud import add_cloud
 from data.books import Books
 from data.data_to_save import UPLOAD_FOLDER
 from data.blueprint_book import blueprint_book
@@ -32,6 +33,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
 app.register_blueprint(blueprint_book, url_prefix="/book")
 app.register_blueprint(search, url_prefix="/search")
 app.register_blueprint(add_book, url_prefix="/add_book")
+app.register_blueprint(add_cloud, url_prefix="/add_cloud")
 app.register_blueprint(blueprint_information, url_prefix="/information",
                        name="information")
 app.register_blueprint(confirmation,
@@ -130,4 +132,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
